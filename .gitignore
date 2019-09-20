@@ -1,0 +1,5 @@
+v_p_c/
+.idea/
+__pycache__/
+*.db
+*.pyc
