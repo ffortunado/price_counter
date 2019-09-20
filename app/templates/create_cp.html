@@ -1,0 +1,31 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+  <form action="" method="POST" role="form" class="admin-form form-horizontal" enctype="multipart/form-data">
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{ form.domain.label }}
+    </label>
+    <div class="col-md-9">{{ form.domain }}</div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{ form.main_region.label }}
+    </label>
+    <div class="col-md-9">{{ form.main_region }}</div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{ form.description.label }}
+    </label>
+    <div class="col-md-9">{{ form.description }}</div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{ form.kwords.label }}
+    </label>
+    <div class="col-md-9">{{ form.kwords }}</div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10 submit-row">
+      <input type="submit" class="btn btn-primary" value="Создать КП">
+    </div>
+  </div>
+  </form>
+{% endblock %}

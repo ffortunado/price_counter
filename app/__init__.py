@@ -6,7 +6,6 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
 
-
 app = Flask(__name__)
 app.secret_key = 'secret_key'
 app.config.from_object(Configuration)
@@ -14,14 +13,21 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 from .models import CommercialProposal, MainMetrics
+from .views import AnalyticsView
 
 
-class MainMetricsView(ModelView):
+class MainMetricsAdmin(ModelView):
     column_searchable_list = ['keyword']
 
 
+class CommercialProposalAdmin(ModelView):
+    column_display_pk = True
+
+
 admin = Admin(app, name='price_counter', template_mode='bootstrap3')
-admin.add_views(ModelView(CommercialProposal, db.session), MainMetricsView(MainMetrics, db.session))
+admin.add_views(CommercialProposalAdmin(CommercialProposal, db.session),
+                MainMetricsAdmin(MainMetrics, db.session),
+                AnalyticsView(name='Создать КП', endpoint='create_cp'))
 
 
 from app import views, models

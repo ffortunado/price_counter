@@ -10,7 +10,7 @@ class CommercialProposal(db.Model):
     main_region = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
-        return '<CommercialProposal {}, {}>'.format(self.domain, self.description)
+        return '{}, {}'.format(self.id, self.domain)
 
 
 class MainMetrics(db.Model):
