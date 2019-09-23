@@ -4,13 +4,33 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from celery import Celery
+
+
+def make_celery(app):
+    celery = Celery(
+        app.import_name,
+        backend=app.config['CELERY_RESULT_BACKEND'],
+        broker=app.config['CELERY_BROKER_URL']
+    )
+    celery.conf.update(app.config)
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    return celery
 
 
 app = Flask(__name__)
-app.secret_key = 'secret_key'
 app.config.from_object(Configuration)
+celery = make_celery(app)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
 
 from .models import CommercialProposal, MainMetrics
 from .views import AnalyticsView

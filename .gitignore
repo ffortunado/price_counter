@@ -3,3 +3,5 @@ v_p_c/
 __pycache__/
 *.db
 *.pyc
+flower
+app.db-journal

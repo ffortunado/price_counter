@@ -11,5 +11,5 @@ class CreateCommercialProposal(FlaskForm):
                                 render_kw={'class': 'form-control'})
     main_region = StringField('Главный регион <strong style="color: red">*</strong>',
                               render_kw={'class': 'form-control'})
-    kwords = TextAreaField('Список ключевиков',
+    keywords = TextAreaField('Список ключевиков',
                            render_kw={'class': 'form-control', 'rows': '10'})

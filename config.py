@@ -9,3 +9,8 @@ class Configuration:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     FLASK_ADMIN_SWATCH = 'cerulean'
     SESSION_TPE = 'filesystem'
+    SECRET_KEY = 'you-will-never-guess'
+    CELERY_BROKER_URL = 'redis://localhost:6379'
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+

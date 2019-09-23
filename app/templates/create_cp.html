@@ -1,6 +1,7 @@
 {% extends 'admin/master.html' %}
 {% block body %}
   <form action="" method="POST" role="form" class="admin-form form-horizontal" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
   <div class="form-group">
     <label class="col-md-2 control-label">{{ form.domain.label }}
     </label>
@@ -17,9 +18,9 @@
     <div class="col-md-9">{{ form.description }}</div>
   </div>
   <div class="form-group">
-    <label class="col-md-2 control-label">{{ form.kwords.label }}
+    <label class="col-md-2 control-label">{{ form.keywords.label }}
     </label>
-    <div class="col-md-9">{{ form.kwords }}</div>
+    <div class="col-md-9">{{ form.keywords }}</div>
   </div>
   <hr>
   <div class="form-group">
