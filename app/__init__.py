@@ -32,7 +32,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
-from .models import CommercialProposal, MainMetrics
+from .models import CommercialProposal, MainMetrics, Region
 from .views import AnalyticsView
 
 
@@ -47,7 +47,8 @@ class CommercialProposalAdmin(ModelView):
 admin = Admin(app, name='price_counter', template_mode='bootstrap3')
 admin.add_views(CommercialProposalAdmin(CommercialProposal, db.session),
                 MainMetricsAdmin(MainMetrics, db.session),
-                AnalyticsView(name='Создать КП', endpoint='create_cp'))
+                ModelView(Region, db.session),
+                AnalyticsView(name='Создать КП', endpoint='create_cp'),)
 
 
 from app import views, models

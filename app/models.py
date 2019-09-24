@@ -1,13 +1,26 @@
 from app import db
 
 
+class Region(db.Model):
+    __tanlename__ = 'region'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    yandex_code = db.Column(db.Integer, nullable=True)
+    google_code = db.Column(db.String(50), nullable=True)
+
+    def __repr__(self):
+        return '<Region {}>'.format(self.name)
+
+
 class CommercialProposal(db.Model):
     __tablename__ = 'commercial_proposal'
 
     id = db.Column(db.Integer, primary_key=True)
     domain = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text(), nullable=False)
-    main_region = db.Column(db.String(50), nullable=False)
+    main_region_id = db.Column(db.Integer, db.ForeignKey(Region.id), nullable=False)
+    main_region = db.relationship(Region)
 
     def __repr__(self):
         return '{}, {}'.format(self.id, self.domain)
